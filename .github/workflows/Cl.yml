@@ -43,8 +43,9 @@ jobs:
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
         application_name: SecureApi 
         environment_name: SecureApi-env-1
-        version_label: ${{ github.run_id }}
+        version_label: '13168166927'
         region: eu-north-1 
         deployment_package: site.zip
+        use_existing_version_if_available: 'true'
 
       
