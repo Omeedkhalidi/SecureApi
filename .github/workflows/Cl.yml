@@ -19,7 +19,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '6.0' 
+        dotnet-version: '8.0' 
 
     - name: Restore dependencies
       run: dotnet restore SecureApi/SecureApi.csproj
@@ -43,9 +43,9 @@ jobs:
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
         application_name: SecureApi 
         environment_name: SecureApi-env-1
-        version_label: '13168166927'
+        version_label: 'deploy-${{ github.run_number }}-${{ github.run_id }}'
         region: eu-north-1 
         deployment_package: site.zip
-        use_existing_version_if_available: 'true'
+  
 
       
