@@ -7,24 +7,18 @@ namespace SecureApi.Controllers
     [ApiController]
     public class CryptoController : ControllerBase
     {
-        [HttpPost("encrypt")]
-        public ActionResult<string> Encrypt([FromBody] CryptoRequest request)
+        [HttpGet("encrypt")]
+        public ActionResult<string> Encrypt([FromQuery] string input, [FromQuery] int shift)
         {
-            var encrypted = new string(request.Text.Select(c => (char)(c + request.Shift)).ToArray());
+            var encrypted = new string(input.Select(c => (char)(c + shift)).ToArray());
             return Ok(encrypted);
         }
 
-        [HttpPost("decrypt")]
-        public ActionResult<string> Decrypt([FromBody] CryptoRequest request)
+        [HttpGet("decrypt")]
+        public ActionResult<string> Decrypt([FromQuery] string input, [FromQuery] int shift)
         {
-            var decrypted = new string(request.Text.Select(c => (char)(c - request.Shift)).ToArray());
+            var decrypted = new string(input.Select(c => (char)(c - shift)).ToArray());
             return Ok(decrypted);
         }
-    }
-
-    public class CryptoRequest
-    {
-        public string Text { get; set; }
-        public int Shift { get; set; }
     }
 }
